@@ -11,7 +11,7 @@ export class CategoryService {
   ) {}
 
   findAll() {
-    return this.categoryRepository.createQueryBuilder("category").select(["id as valor", "name as etiqueta"]).getRawMany();
+    return this.categoryRepository.createQueryBuilder("category").select(["id as etiqueta", "name as valor"]).getRawMany();
     // return this.categoryRepository.find();
   }
 
