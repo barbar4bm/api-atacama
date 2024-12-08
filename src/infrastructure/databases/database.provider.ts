@@ -1,16 +1,20 @@
 import { DataSource } from 'typeorm';
+import * as dotenv from 'dotenv';
 
-import { Category, Establishment, Itemized } from './entities';
+dotenv.config();
+
+import { Category, Establishment, Itemized, Slep } from './entities';
 
 const dataSource = new DataSource({
   type: 'postgres',
-  host: 'db',
+  host: process.env.DATABASE_HOST,
   port: 5432,
-  username: 'postgres',
-  password: 'postgres',
-  database: 'atacama',
-  entities: [Category, Establishment, Itemized],
+  username: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  entities: [Category, Establishment, Itemized, Slep],
   synchronize: true,
+  ssl: true,
 });
 
 export const databaseProviders = [

@@ -11,9 +11,10 @@ export class ItemizedService {
   ) {}
 
   findAll() {
-    return this.itemizedRepository.find({
-      relations: ['category'],
-    });
+    return this.itemizedRepository
+      .createQueryBuilder('itemized')
+      .select(['departure as etiqueta', 'departure as valor'])
+      .getRawMany();
   }
 
   findOne(id: string) {

@@ -11,7 +11,10 @@ export class EstablishmentService {
   ) {}
 
   findAll() {
-    return this.establishmentRepository.find();
+    return this.establishmentRepository
+      .createQueryBuilder('establishment')
+      .select(['name as etiqueta', 'name as valor'])
+      .getRawMany();
   }
 
   findOne(id: string) {
