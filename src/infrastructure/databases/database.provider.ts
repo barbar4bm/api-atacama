@@ -14,7 +14,9 @@ const dataSource = new DataSource({
   database: process.env.DATABASE_NAME,
   entities: [Category, Establishment, Itemized, Slep],
   synchronize: true,
-  ssl: true,
+  ssl: {
+    rejectUnauthorized: false, // Esto ignora la validación del certificado SSL
+  },
 });
 
 export const databaseProviders = [
